@@ -16,7 +16,36 @@ KEY_ESCAPE_MAP: Final[Dict] = {
             "themeList": [
                 {
                     "themeNameForScrap": "살랑살랑연구소",
-                    "themeId": 1
+                    "themeId": "136"
+                },
+
+                {
+                    "themeNameForScrap": "월야애담-영문병행표기",
+                    "themeId": "135"
+                },
+
+                {
+                    "themeNameForScrap": "그카지말라캤자나",
+                    "themeId": "137"
+                }
+            ]
+        },
+        {
+            "locationForScrap": "홍대점",
+            "themeList": [
+                {
+                    "themeNameForScrap": "고백",
+                    "themeId": "457"
+                },
+
+                {
+                    "themeNameForScrap": "삐릿-뽀",
+                    "themeId": "458"
+                },
+
+                {
+                    "themeNameForScrap": "홀리데이",
+                    "themeId": "459"
                 }
             ]
         }
@@ -47,7 +76,7 @@ def scrap_key_escape_theme():
                           value=f"//table/tbody/tr/td/a{'/u' if dateDelta == 0 else ''}[text()='{date.day}']") \
             .click()
 
-        driver.implicitly_wait(3)
+        driver.implicitly_wait(10)
 
         for cafe in KEY_ESCAPE_MAP.get("cafeList"):
 
@@ -55,14 +84,15 @@ def scrap_key_escape_theme():
                 .find_element(by=By.XPATH, value=f"//a/li[text()='{cafe['locationForScrap']}']") \
                 .click()
 
-            time.sleep(3)
+            driver.implicitly_wait(10)
 
             for theme in cafe.get("themeList"):
                 driver.find_element(by=By.ID, value="theme_data") \
                     .find_element(by=By.XPATH, value=f"//a/li[text()='{theme['themeNameForScrap']}']") \
                     .click()
 
-                time.sleep(3)
+                time.sleep(1)
+                driver.implicitly_wait(5)
 
                 result = driver.find_element(by=By.ID, value="theme_time_data").find_elements(by=By.CLASS_NAME,
                                                                                               value="possible").copy()
@@ -76,5 +106,5 @@ def scrap_key_escape_theme():
 
     print(data_for_insert_db)
 
-    # cur.executemany("INSERT INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data)
+    # cur.executemany("INSERT INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data_for_insert_db)
     # connection.commit()
