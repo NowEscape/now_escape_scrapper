@@ -1,0 +1,11 @@
+from setuptools import setup, find_packages
+
+setup(
+  name='방탈출 예약 가능한 시간대 스크래핑 자동화 툴',
+  version='1.0.0',
+  description='방탈출 예약 가능한 시간대 스크래핑 자동화 툴',
+  author='nowescaperoom',
+  author_email='nowescaperoom1@gmail.com',
+  packages=find_packages(),
+  python_requires='>=3.11'
+)

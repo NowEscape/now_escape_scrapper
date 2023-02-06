@@ -9,8 +9,8 @@ from datetime import datetime, timedelta
 import mysql.connector
 
 #데이터베이스
-connection = mysql.connector.connect(user="root", password="jholnw0904", host="127.0.0.1", charset="utf8mb4", db="test")
-cur = connection.cursor(prepared=True)
+# connection = mysql.connector.connect(user="root", password="jholnw0904", host="127.0.0.1", charset="utf8mb4", db="test")
+# cur = connection.cursor(prepared=True)
 
 #현재 날짜
 now = datetime.now()
@@ -26,7 +26,7 @@ driver.find_element(by=By.ID, value="zizum_data").find_element(by=By.XPATH, valu
 
 time.sleep(2)
 
-driver.find_element(by=By.ID, value="calendar_data").find_element(by=By.XPATH, value="//table/tbody/tr/td/a/u[text()='31']").click()
+driver.find_element(by=By.ID, value="calendar_data").find_element(by=By.XPATH, value="//table/tbody/tr/td/a/u[text()='7']").click()
 
 time.sleep(2)
 
@@ -45,5 +45,5 @@ for text in textList:
     data.append(line)
 print(data)
 
-cur.executemany("INSERT INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data)
-connection.commit()
+# cur.executemany("INSERT INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data)
+# connection.commit()

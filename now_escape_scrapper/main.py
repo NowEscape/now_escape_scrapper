@@ -1,0 +1,3 @@
+from now_escape_scrapper.scrapTool.scrapeKeyEscape import scrap_key_escape_theme
+
+scrap_key_escape_theme()
