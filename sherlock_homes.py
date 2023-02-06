@@ -16,7 +16,6 @@ cur = connection.cursor(prepared=True)
 now = datetime.now()
 now_date = now.strftime('%Y-%m-%d')
 
-
 #방탈출 매장 URL
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 url = "https://sherlock-holmes.co.kr/reservation/"
