@@ -2,7 +2,7 @@ import time
 from datetime import datetime, timedelta
 from typing import Final, Dict
 
-import mysql
+import mysql.connector
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -54,9 +54,11 @@ KEY_ESCAPE_MAP: Final[Dict] = {
 
 
 def scrap_key_escape_theme():
-    # connection = mysql.connector.connect(user="root", password="jholnw0904", host="127.0.0.1", charset="utf8mb4",
-    #                                      db="test")
-    # cur = connection.cursor(prepared=True)
+    connection = mysql.connector.connect(user="nowadmin", password="Nowescape1!",
+                                         host="nowescape-db.cvafksmpbb8z.ap-northeast-2.rds.amazonaws.com",
+                                         charset="utf8mb4",
+                                         db="now_escape")
+    cur = connection.cursor(prepared=True)
     now = datetime.now()
 
     # 방탈출 매장 URL
@@ -71,40 +73,46 @@ def scrap_key_escape_theme():
         date = now + timedelta(dateDelta)
         date_str = date.strftime('%Y-%m-%d')
 
-        driver.find_element(by=By.ID, value="calendar_data") \
-            .find_element(by=By.XPATH,
-                          value=f"//table/tbody/tr/td/a{'/u' if dateDelta == 0 else ''}[text()='{date.day}']") \
-            .click()
-
-        driver.implicitly_wait(10)
+        try:
+            driver.find_element(by=By.ID, value="calendar_data") \
+                .find_element(by=By.XPATH,
+                              value=f"//table/tbody/tr/td/a{'/u' if dateDelta == 0 else ''}[text()='{date.day}']") \
+                .click()
+            driver.implicitly_wait(10)
+        except:
+            continue
 
         for cafe in KEY_ESCAPE_MAP.get("cafeList"):
-
-            driver.find_element(by=By.ID, value="zizum_data") \
-                .find_element(by=By.XPATH, value=f"//a/li[text()='{cafe['locationForScrap']}']") \
-                .click()
-
-            driver.implicitly_wait(10)
+            try:
+                driver.find_element(by=By.ID, value="zizum_data") \
+                    .find_element(by=By.XPATH, value=f"//a/li[text()='{cafe['locationForScrap']}']") \
+                    .click()
+                driver.implicitly_wait(10)
+            except:
+                continue
 
             for theme in cafe.get("themeList"):
-                driver.find_element(by=By.ID, value="theme_data") \
-                    .find_element(by=By.XPATH, value=f"//a/li[text()='{theme['themeNameForScrap']}']") \
-                    .click()
+                try:
+                    driver.find_element(by=By.ID, value="theme_data") \
+                        .find_element(by=By.XPATH, value=f"//a/li[text()='{theme['themeNameForScrap']}']") \
+                        .click()
 
-                time.sleep(1)
-                driver.implicitly_wait(5)
+                    time.sleep(1)
+                    driver.implicitly_wait(10)
 
-                result = driver.find_element(by=By.ID, value="theme_time_data").find_elements(by=By.CLASS_NAME,
-                                                                                              value="possible").copy()
+                    result = driver.find_element(by=By.ID, value="theme_time_data").find_elements(by=By.CLASS_NAME,
+                                                                                                  value="possible").copy()
 
-                textList = map((lambda element: element.text), result)
+                    textList = map((lambda element: element.text), result)
 
-                for text in textList:
-                    date_time = date_str + " " + text
-                    line = (date_time, theme["themeId"])
-                    data_for_insert_db.append(line)
+                    for text in textList:
+                        date_time = date_str + " " + text
+                        line = (date_time, theme["themeId"])
+                        data_for_insert_db.append(line)
+                except:
+                    print("error", theme)
 
     print(data_for_insert_db)
 
-    # cur.executemany("INSERT INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data_for_insert_db)
-    # connection.commit()
+    cur.executemany("INSERT INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data_for_insert_db)
+    connection.commit()
