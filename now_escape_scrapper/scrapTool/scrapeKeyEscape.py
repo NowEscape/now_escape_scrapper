@@ -48,6 +48,86 @@ KEY_ESCAPE_MAP: Final[Dict] = {
                     "themeId": "459"
                 }
             ]
+        },
+        {
+            "locationForScrap": "우주라이크",
+            "themeList": [
+                {
+                    "themeNameForScrap": "US",
+                    "themeId": "141"
+                },
+
+                {
+                    "themeNameForScrap": "WANNA GO HOME",
+                    "themeId": "142"
+                }
+            ]
+        },
+        {
+            "locationForScrap": "강남 더오름",
+            "themeList": [
+                {
+                    "themeNameForScrap": "네드",
+                    "themeId": "138"
+                },
+
+                {
+                    "themeNameForScrap": "엔제리오",
+                    "themeId": "139"
+                }
+            ]
+        },
+        {
+            "locationForScrap": "부산점",
+            "themeList": [
+                {
+                    "themeNameForScrap": "정신병동",
+                    "themeId": "1542"
+                },
+
+                {
+                    "themeNameForScrap": "파파라치",
+                    "themeId": "1541"
+                },
+
+                {
+                    "themeNameForScrap": "난쟁이의 장난-영문병행표기",
+                    "themeId": "1540"
+                },
+                {
+                    "themeNameForScrap": "셜록 죽음의 전화",
+                    "themeId": "1543"
+                },
+                {
+                    "themeNameForScrap": "신비의숲 고대마법의 비밀",
+                    "themeId": "1544"
+                }
+            ]
+        },
+        {
+            "locationForScrap": "전주점",
+            "themeList": [
+                {
+                    "themeNameForScrap": "난쟁이의 장난-영문병행표기",
+                    "themeId": "1653"
+                },
+                {
+                    "themeNameForScrap": "혜화잡화점",
+                    "themeId": "1654"
+                },
+                {
+                    "themeNameForScrap": "월야애담-영문병행표기",
+                    "themeId": "1655"
+                },
+                {
+                    "themeNameForScrap": "사라진 목격자",
+                    "themeId": "1657"
+                },
+                {
+                    "themeNameForScrap": "살랑살랑연구소",
+                    "themeId": "1656"
+                }
+            ]
         }
     ]
 }
@@ -97,8 +177,8 @@ def scrap_key_escape_theme():
                         .find_element(by=By.XPATH, value=f"//a/li[text()='{theme['themeNameForScrap']}']") \
                         .click()
 
-                    time.sleep(1)
-                    driver.implicitly_wait(10)
+                    time.sleep(0.5)
+                    driver.implicitly_wait(5)
 
                     result = driver.find_element(by=By.ID, value="theme_time_data").find_elements(by=By.CLASS_NAME,
                                                                                                   value="possible").copy()
@@ -114,5 +194,12 @@ def scrap_key_escape_theme():
 
     print(data_for_insert_db)
 
-    cur.executemany("INSERT INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data_for_insert_db)
+    theme_id_list = []
+
+    for cafe in KEY_ESCAPE_MAP["cafeList"]:
+        for theme in cafe["themeList"]:
+            theme_id_list.append(theme["themeId"])
+
+    cur.execute("DELETE FROM theme_date WHERE theme_id IN (" + ','.join(str(e) for e in theme_id_list) + ")")
+    cur.executemany("INSERT IGNORE INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data_for_insert_db)
     connection.commit()
