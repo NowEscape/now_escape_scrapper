@@ -23,6 +23,44 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                 {
                     "themeName": "지프리트의 심장",
                     "themeId": "549"
+                },
+                {
+                    "themeName": "스토커",
+                    "themeId": "545"
+                },
+                {
+                    "themeName": "파라오의 심판",
+                    "themeId": "547"
+                },
+                {
+                    "themeName": "도둑들",
+                    "themeId": "544"
+                },
+                {
+                    "themeName": "미녀와야수2",
+                    "themeId": "546"
+                }
+            ]
+        },
+        {
+            "region1ForScrap": "서울특별시",
+            "region2ForScrap": "노량진점",
+            "themeList": [
+                {
+                    "themeName": "어린왕자",
+                    "themeId": "636"
+                },
+                {
+                    "themeName": "빛과 그림자:화이트의죽음2",
+                    "themeId": "637"
+                },
+                {
+                    "themeName": "반하셨군요?",
+                    "themeId": "638"
+                },
+                {
+                    "themeName": "중고로운 평화나라",
+                    "themeId": "639"
                 }
             ]
         }
