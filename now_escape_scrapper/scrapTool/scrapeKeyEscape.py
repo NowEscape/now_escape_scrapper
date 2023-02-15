@@ -160,30 +160,28 @@ def scrap_key_escape_theme():
         date_str = date.strftime('%Y-%m-%d')
 
         try:
-            driver.find_element(by=By.ID, value="calendar_data") \
+            dateElement = driver.find_element(by=By.ID, value="calendar_data") \
                 .find_element(by=By.XPATH,
-                              value=f"//table/tbody/tr/td/a{'/u' if dateDelta == 0 else ''}[text()='{date.day}']") \
-                .click()
+                              value=f".//table/tbody/tr/td/a{'/u' if dateDelta == 0 else ''}[text()='{date.day}']//..")
+
+            driver.execute_script("arguments[0].click();", dateElement)
+
             driver.implicitly_wait(10)
-        except:
-            print("error")
+        except Exception as e:
+            print("error", e)
             continue
 
         for cafe in KEY_ESCAPE_MAP.get("cafeList"):
-            try:
-                driver.find_element(by=By.ID, value="zizum_data") \
-                    .find_element(by=By.XPATH, value=f"//a/li[text()='{cafe['locationForScrap']}']") \
-                    .click()
-                driver.implicitly_wait(10)
-            except:
-                print("error", cafe)
-                continue
+            cafeElement = driver.find_element(by=By.ID, value="zizum_data") \
+                .find_element(by=By.XPATH, value=f".//a/li[text()='{cafe['locationForScrap']}']//..")
+            driver.execute_script("arguments[0].click();", cafeElement)
+            driver.implicitly_wait(10)
 
             for theme in cafe.get("themeList"):
                 try:
-                    driver.find_element(by=By.ID, value="theme_data") \
-                        .find_element(by=By.XPATH, value=f"//a/li[text()='{theme['themeNameForScrap']}']") \
-                        .click()
+                    themeElement = driver.find_element(by=By.ID, value="theme_data") \
+                        .find_element(by=By.XPATH, value=f".//a/li[text()='{theme['themeNameForScrap']}']//..")
+                    driver.execute_script("arguments[0].click();", themeElement)
 
                     time.sleep(0.5)
                     driver.implicitly_wait(5)
@@ -197,8 +195,8 @@ def scrap_key_escape_theme():
                         date_time = date_str + " " + text
                         line = (date_time, theme["themeId"])
                         data_for_insert_db.append(line)
-                except:
-                    print("error", theme)
+                except Exception as e:
+                    print("error", theme, e)
 
     print(data_for_insert_db)
 
