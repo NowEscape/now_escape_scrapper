@@ -168,6 +168,7 @@ def scrap_key_escape_theme():
                 .click()
             driver.implicitly_wait(10)
         except:
+            print("error")
             continue
 
         for cafe in KEY_ESCAPE_MAP.get("cafeList"):
@@ -177,6 +178,7 @@ def scrap_key_escape_theme():
                     .click()
                 driver.implicitly_wait(10)
             except:
+                print("error", cafe)
                 continue
 
             for theme in cafe.get("themeList"):
@@ -211,3 +213,5 @@ def scrap_key_escape_theme():
     cur.execute("DELETE FROM theme_date WHERE theme_id IN (" + ','.join(str(e) for e in theme_id_list) + ")")
     cur.executemany("INSERT IGNORE INTO theme_date(theme_time,theme_id, is_open) VALUES(?, ?, 1)", data_for_insert_db)
     connection.commit()
+
+scrap_key_escape_theme()
