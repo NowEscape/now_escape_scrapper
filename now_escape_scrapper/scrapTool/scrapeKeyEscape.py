@@ -155,7 +155,7 @@ def scrap_key_escape_theme():
     data_for_insert_db = []
     now = datetime.now()
 
-    for dateDelta in range(7):
+    for dateDelta in range(1):
         date = now + timedelta(dateDelta)
         date_str = date.strftime('%Y-%m-%d')
 
@@ -184,7 +184,7 @@ def scrap_key_escape_theme():
                     driver.execute_script("arguments[0].click();", themeElement)
 
                     time.sleep(0.5)
-                    driver.implicitly_wait(5)
+                    driver.implicitly_wait(10)
 
                     result = driver.find_element(by=By.ID, value="theme_time_data").find_elements(by=By.CLASS_NAME,
                                                                                                   value="possible").copy()
