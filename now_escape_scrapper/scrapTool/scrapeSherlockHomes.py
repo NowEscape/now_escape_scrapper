@@ -33,7 +33,6 @@ def scrap_sherlock_homes_theme():
                                          db="now_escape")
     cur = connection.cursor(prepared=True)
 
-    # 방탈출 매장 URL
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
 

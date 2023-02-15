@@ -139,8 +139,15 @@ def scrap_key_escape_theme():
                                          charset="utf8mb4",
                                          db="now_escape")
     cur = connection.cursor(prepared=True)
-    now = datetime.now()
 
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--headless")
+
+    # linux 환경에서 필요한 option
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    # 방탈출 매장 URL
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), chrome_options=chrome_options)
     # 방탈출 매장 URL
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(KEY_ESCAPE_MAP["url"])
@@ -148,6 +155,7 @@ def scrap_key_escape_theme():
     driver.implicitly_wait(3)
 
     data_for_insert_db = []
+    now = datetime.now()
 
     for dateDelta in range(7):
         date = now + timedelta(dateDelta)
