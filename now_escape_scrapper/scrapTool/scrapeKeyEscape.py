@@ -148,8 +148,6 @@ def scrap_key_escape_theme():
     chrome_options.add_argument('--disable-dev-shm-usage')
     # 방탈출 매장 URL
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), chrome_options=chrome_options)
-    # 방탈출 매장 URL
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(KEY_ESCAPE_MAP["url"])
 
     driver.implicitly_wait(3)
