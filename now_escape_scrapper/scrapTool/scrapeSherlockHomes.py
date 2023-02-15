@@ -17,14 +17,20 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
             "region2ForScrap": "노원점",
             "themeList": [
                 {
-                    "themeIdForScrap": "theme_ac_289",
+                    "themeName": "황금 감옥 : 와캄",
                     "themeId": "548"
                 },
+                {
+                    "themeName": "지프리트의 심장",
+                    "themeId": "549"
+                }
             ]
         }
     ]
 }
 
+def get_theme_name(theme_name):
+    return theme_name + " &nbsp;"
 
 def scrap_sherlock_homes_theme():
     connection = mysql.connector.connect(user="nowadmin", password="Nowescape1!",
@@ -72,8 +78,9 @@ def scrap_sherlock_homes_theme():
             time.sleep(1)
 
             for theme in cafe["themeList"]:
-                result = driver.find_element(by=By.ID, value=theme["themeIdForScrap"])\
-                    .find_elements(by=By.XPATH, value="div[2]/div/a/p[1]").copy()
+                result = driver\
+                    .find_element(by=By.XPATH, value=f"//h2[contains(text(),'{theme['themeName']}')]")\
+                    .find_elements(by=By.XPATH, value="../div[2]/div/a/p[1]").copy()
                 textList = map((lambda element: element.text), result)
                 for text in textList:
                     date_time = date_str + " " + text
