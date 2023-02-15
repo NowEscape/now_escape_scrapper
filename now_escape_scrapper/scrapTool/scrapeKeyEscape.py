@@ -155,7 +155,7 @@ def scrap_key_escape_theme():
     data_for_insert_db = []
     now = datetime.now()
 
-    for dateDelta in range(1):
+    for dateDelta in range(7):
         date = now + timedelta(dateDelta)
         date_str = date.strftime('%Y-%m-%d')
 
