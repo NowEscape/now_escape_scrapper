@@ -77,7 +77,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "510"
                 },
                 {
-                    "themeName": "혼:원혼의 저주(대학로)",
+                    "themeName": "혼:원혼의저주 (대학로)",
                     "themeId": "511"
                 },
                 {
@@ -155,15 +155,15 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "249"
                 },
                 {
-                    "themeName": "[3세대]웨딩크루즈 살인사건",
+                    "themeName": "[3세대] 웨딩크루즈 살인사건",
                     "themeId": "252"
                 },
                 {
-                    "themeName": "[3세대]학교괴담 태훈이의 죽음",
+                    "themeName": "[3세대] 학교괴담 태훈이의 죽음",
                     "themeId": "250"
                 },
                 {
-                    "themeName": "[3세대]미대교수의 비밀",
+                    "themeName": "[3세대] 미대교수의 비밀",
                     "themeId": "251"
                 }
             ]
@@ -321,7 +321,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
             "region2ForScrap": "분당야탑점",
             "themeList": [
                 {
-                    "themeName": "빛과 그림자:화이트의 죽음2",
+                    "themeName": "빛과 그림자:화이트의죽음2",
                     "themeId": "832"
                 },
                 {
@@ -347,15 +347,15 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
             "region2ForScrap": "서현점",
             "themeList": [
                 {
-                    "themeName": "Molaq: 성 안 이야기",
+                    "themeName": "Molaq : 성 밖 이야기",
                     "themeId": "837"
                 },
                 {
-                    "themeName": "Below: 성 밖 이야기",
+                    "themeName": "Below : 성 안 이야기",
                     "themeId": "838"
                 },
                 {
-                    "themeName": "대영어시대:Age of English",
+                    "themeName": "대영어시대 : Age of English",
                     "themeId": "839"
                 }
             ]
@@ -373,7 +373,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "886"
                 },
                 {
-                    "themeName": "빛과 그림자:화이트의 죽음2",
+                    "themeName": "빛과 그림자:화이트의죽음2",
                     "themeId": "887"
                 },
                 {
@@ -381,7 +381,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "888"
                 },
                 {
-                    "themeName": "호텔:사라진다이아몬드(의정부버전)",
+                    "themeName": "호텔:사라진 다이아몬드(의정부버전)",
                     "themeId": "889"
                 }
             ]
@@ -447,11 +447,11 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
             "region2ForScrap": "부평점",
             "themeList": [
                 {
-                    "themeName": "수상한 형제들",
+                    "themeName": "수상한형제들",
                     "themeId": "1029"
                 },
                 {
-                    "themeName": "이상한 나라의 초대[부평]",
+                    "themeName": "이상한 나라의 초대 [부평]",
                     "themeId": "1030"
                 },
                 {
@@ -463,7 +463,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "1032"
                 },
                 {
-                    "themeName": "나쁜놈 나쁜놈 나쁜놈",
+                    "themeName": "[NEW]나쁜놈 나쁜놈 나쁜놈",
                     "themeId": "1033"
                 }
             ]
@@ -489,7 +489,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "1157"
                 },
                 {
-                    "themeName": "무한의 던전(20분)",
+                    "themeName": "무한의 던전 (20분)",
                     "themeId": "1158"
                 },
                 {
@@ -567,7 +567,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "1103"
                 },
                 {
-                    "themeName": "던전: 비밀의 문",
+                    "themeName": "던전:비밀의문",
                     "themeId": "1104"
                 }
             ]
@@ -641,7 +641,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "1286"
                 },
                 {
-                    "themeName": "황금감옥: 와캄",
+                    "themeName": "황금감옥 : 와캄",
                     "themeId": "1287"
                 },
                 {
