@@ -212,7 +212,7 @@ def scrap_key_escape_theme():
 
     print(theme_date_list)
 
-    theme_id_list = [theme["themeId"] for cafe in KEY_ESCAPE_MAP["cafeList"] for theme in cafe["themeList"]]
+    theme_id_list = [theme["theme_id"] for cafe in KEY_ESCAPE_MAP["cafeList"] for theme in cafe["themeList"]]
 
     # update_theme_date(theme_date_list, theme_id_list)
 
