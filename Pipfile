@@ -8,6 +8,7 @@ selenium = "*"
 webdriver-manager = "*"
 mysql-connector-python = "*"
 setuptools = "*"
+python-dotenv = "==1.0.0"
 
 [dev-packages]
 
