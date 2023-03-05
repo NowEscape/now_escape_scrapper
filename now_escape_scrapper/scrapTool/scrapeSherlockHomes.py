@@ -641,7 +641,7 @@ SHERLOCK_HOMES_MAP: Final[Dict] = {
                     "themeId": "1286"
                 },
                 {
-                    "themeName": "황금감옥 : 와캄",
+                    "themeName": "황금 감옥 : 와캄",
                     "themeId": "1287"
                 },
                 {
@@ -704,8 +704,8 @@ def scrap_sherlock_homes_theme():
             driver.execute_script("arguments[0].click();", element)
 
             time.sleep(1)
-
             for theme in cafe["themeList"]:
+                print(date, theme)
                 result = driver\
                     .find_element(by=By.XPATH, value=f"//h2[contains(text(),'{theme['themeName']}')]")\
                     .find_elements(by=By.XPATH, value="../div[2]/div/a/p[1]").copy()
