@@ -4,7 +4,6 @@ from src.utils.dateUtil import get_date_time_str
 
 
 def get_connection():
-    print(DB_USER, DB_PASSWORD, DB_HOST, DB_CHARSET, DB_NAME)
     return mysql.connector.connect(user=DB_USER, password=DB_PASSWORD,
                                    host=DB_HOST,
                                    charset=DB_CHARSET,
