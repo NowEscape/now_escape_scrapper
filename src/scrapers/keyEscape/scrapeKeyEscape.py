@@ -43,7 +43,7 @@ def scrape_theme_date():
 
     theme_id_list = [theme.theme_id for cafe in KEY_ESCAPE_CAFE_LIST for theme in cafe.theme_list]
 
-    update_theme_date(theme_date_list, theme_id_list)
+    update_theme_date(theme_id_list, theme_date_list)
 
 
 # try_except_handling을 통해서 에러가 났을 경우, None을 반환하도록 한다.

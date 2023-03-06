@@ -38,7 +38,7 @@ def scrap_sherlock_homes_theme():
 
     theme_id_list = [theme.theme_id for cafe in SHERLOCK_HOMES_CAFE_LIST for theme in cafe.theme_list]
 
-    update_theme_date(theme_date_list, theme_id_list)
+    update_theme_date(theme_id_list, theme_date_list)
 
 
 @try_except_handling
