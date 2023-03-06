@@ -31,7 +31,7 @@ def update_theme_date(theme_id_list, theme_date_list):
     cursor = connection.cursor(prepared=True)
     cursor.execute("DELETE FROM theme_date WHERE theme_id IN (" + ','.join(str(e) for e in theme_id_list) + ")")
     insert_query = "INSERT INTO theme_date (theme_id, theme_time, is_open) VALUES (%s, %s,1)"
-    cursor.executemany(insert_query, theme_date_list)
+    cursor.executemany(insert_query, [(item.theme_id, item.date_time) for item in theme_date_list])
     connection.commit()
     cursor.close()
     connection.close()
