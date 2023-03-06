@@ -18,7 +18,7 @@ def scrap_next_edition_theme():
     for cafe in NEXT_EDITION_CAFE_LIST:
         driver.get(cafe.url)
 
-        driver.implicitly_wait(3)
+        driver.implicitly_wait(0.5)
 
         for dateDelta in range(7):
             date = now + timedelta(dateDelta)
@@ -42,13 +42,13 @@ def scrap_next_edition_theme():
 def click_date(driver, date) -> bool:
     driver.find_element(by=By.ID, value="datepicker").click()
 
-    driver.implicitly_wait(1)
+    driver.implicitly_wait(0.5)
 
     element = driver.find_element(by=By.ID, value="ui-datepicker-div") \
         .find_element(by=By.XPATH, value=f"table/tbody/tr/td/a[text()='{date.day}']")
     driver.execute_script("arguments[0].click();", element)
 
-    time.sleep(1)
+    driver.implicitly_wait(0.5)
     return True
 
 
