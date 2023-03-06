@@ -39,7 +39,7 @@ def scrape_theme_date():
                 time_list = [element.text for element in theme_time_result]
 
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
-                print(f'{datetime.now()} scarping {date_str} {cafe.location} {theme.theme_name}')
+                print(f'{datetime.now()} scraping {date_str} {cafe.location} {theme.theme_name}')
 
     theme_id_list = [theme.theme_id for cafe in KEY_ESCAPE_CAFE_LIST for theme in cafe.theme_list]
 
