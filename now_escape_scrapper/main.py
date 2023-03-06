@@ -1,3 +1,3 @@
-from src.scrapers.scrapeKeyEscape import scrap_key_escape_theme
+from src.scrapers.keyEscape.scrapeKeyEscape import scrape_theme_date
 
-scrap_key_escape_theme()
+scrape_theme_date()
