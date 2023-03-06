@@ -23,6 +23,7 @@ def scrape_theme_date():
         date = now + timedelta(dateDelta)
         date_str = date.strftime('%Y-%m-%d')
 
+        # click_date 함수에서 에러가 났을 경우, None을 반환하므로, continue를 통해서 다음 반복문으로 넘어간다.
         if click_date(driver, date.day, dateDelta == 0) is None:
             continue
 
@@ -38,13 +39,14 @@ def scrape_theme_date():
                 time_list = [element.text for element in theme_time_result]
 
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
-                print(f'scarping {date_str} {cafe.location} {theme.theme_name}')
+                print(f'{datetime.now()} scarping {date_str} {cafe.location} {theme.theme_name}')
 
     theme_id_list = [theme.theme_id for cafe in KEY_ESCAPE_CAFE_LIST for theme in cafe.theme_list]
 
     update_theme_date(theme_date_list, theme_id_list)
 
 
+# try_except_handling을 통해서 에러가 났을 경우, None을 반환하도록 한다.
 @try_except_handling
 def click_date(driver, day, is_today) -> bool:
     date_element = get_date_element(driver, day, is_today)
