@@ -1,7 +1,5 @@
 from typing import Final, Dict
 
-KEY_ESCAPE_URL: Final = "https://keyescape.co.kr/web/home.php?go=rev.make"
-
 
 class NextEditionTheme:
 
