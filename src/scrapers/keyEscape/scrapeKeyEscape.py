@@ -85,7 +85,7 @@ def get_date_element(driver, date, is_today):
     if date.strftime('%Y. %-m') != calender_date:
         driver.find_element(by=By.ID, value="calendar_data") \
             .find_element(by=By.CLASS_NAME, value="next").click()
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(5)
 
     return driver.find_element(by=By.ID, value="calendar_data") \
         .find_element(by=By.XPATH,
