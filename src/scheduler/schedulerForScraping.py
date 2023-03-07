@@ -5,7 +5,7 @@ import os
 from typing import Callable
 
 from apscheduler.executors.pool import ProcessPoolExecutor
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.background import BlockingScheduler
 
 from src.scrapers.keyEscape.scrapeKeyEscape import scrape_theme_date
 from src.scrapers.nextEdition.scrapNextEdition import scrap_next_edition_theme
@@ -26,7 +26,7 @@ SCARPING_JOB_LIST = [
 
 
 def run():
-    scheduler = BackgroundScheduler(executors={'default': ProcessPoolExecutor(max_workers=5)})
+    scheduler = BlockingScheduler(executors={'default': ProcessPoolExecutor(max_workers=5)})
     _ = [scheduler.add_job(job.func,
                            id=job.schedule_id,
                            trigger="cron",
@@ -34,14 +34,8 @@ def run():
          for index, job in enumerate(SCARPING_JOB_LIST)
          ]
 
-    scheduler.start()
-
     atexit.register(lambda: scheduler.running and scheduler.shutdown())
-    try:
-        while True:
-            time.sleep(2)
-    except (KeyboardInterrupt, SystemExit):
-        scheduler.shutdown()
+    scheduler.start()
 
 
 def to_minute(index):
