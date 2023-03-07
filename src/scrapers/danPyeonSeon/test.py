@@ -17,12 +17,15 @@ driver.get(url)
 
 driver.implicitly_wait(1)
 
-result = driver.find_elements(by=By.XPATH, value="//td[contains(@data-date,'2023-3-8')]/div/div[3]/div/a/div/div/span[1]")
+result = driver.find_elements(by=By.XPATH,
+                value="//td[contains(@data-date,'2023-3-14')]/div/div[3]/"
+                    "div[contains(@class, 'booking_list  hide_badge')]/a/div/div/span[1][contains(text(), '행복')]")
 
 textList = map((lambda element: element.text), result)
 data = []
 for text in textList:
-    date_time = now_date + " " + text
+    text_final = text[-5:]
+    date_time = now_date + " " + text_final
     theme = "57"
     line = (date_time, theme)
     data.append(line)
