@@ -24,7 +24,7 @@ def scrape_theme_date():
         date_str = date.strftime('%Y-%m-%d')
 
         # click_date 함수에서 에러가 났을 경우, None을 반환하므로, continue를 통해서 다음 반복문으로 넘어간다.
-        if click_date(driver, date.day, dateDelta == 0) is None:
+        if click_date(driver, date, dateDelta == 0) is None:
             continue
 
         for cafe in KEY_ESCAPE_CAFE_LIST:
@@ -48,8 +48,8 @@ def scrape_theme_date():
 
 # try_except_handling을 통해서 에러가 났을 경우, None을 반환하도록 한다.
 @try_except_handling
-def click_date(driver, day, is_today) -> bool:
-    date_element = get_date_element(driver, day, is_today)
+def click_date(driver, date, is_today) -> bool:
+    date_element = get_date_element(driver, date, is_today)
     driver.execute_script("arguments[0].click();", date_element)
     driver.implicitly_wait(10)
     return True
@@ -77,10 +77,19 @@ def get_theme_time_result(driver):
         .find_elements(by=By.CLASS_NAME, value="possible").copy()
 
 
-def get_date_element(driver, day, is_today):
+def get_date_element(driver, date, is_today):
+    calender_date = driver.find_element(by=By.ID, value="calendar_data") \
+        .find_element(by=By.CLASS_NAME, value="yymm").text
+    # os가 window일 경우 %-m이 에러가 날 수 있다. 그럴 경우, %#m을 사용하면 된다.
+    # 아래 if문에서 에러가 났을 경우, 전체가 에러 났다 판단한다.
+    if date.strftime('%Y. %-m') != calender_date:
+        driver.find_element(by=By.ID, value="calendar_data") \
+            .find_element(by=By.CLASS_NAME, value="next").click()
+        driver.implicitly_wait(10)
+
     return driver.find_element(by=By.ID, value="calendar_data") \
         .find_element(by=By.XPATH,
-                      value=f".//table/tbody/tr/td/a{'/u' if is_today else ''}[text()='{day}']//..")
+                      value=f".//table/tbody/tr/td/a{'/u' if is_today else ''}[text()='{date.day}']//..")
 
 
 def get_cafe_element(driver, cafe) -> bool:
