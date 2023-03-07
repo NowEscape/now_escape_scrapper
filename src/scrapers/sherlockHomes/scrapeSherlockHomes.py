@@ -72,4 +72,5 @@ def get_theme_time_result(driver, theme_name):
         .find_elements(by=By.XPATH, value="../div[2]/div/a/p[1]").copy()
 
 
-scrap_sherlock_homes_theme()
+if __name__ == '__main__':
+    scrap_sherlock_homes_theme()

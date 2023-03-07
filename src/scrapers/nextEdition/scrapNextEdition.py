@@ -1,4 +1,3 @@
-import time
 from datetime import datetime, timedelta
 
 from selenium.webdriver.common.by import By
@@ -57,4 +56,5 @@ def get_theme_time_result(driver, theme_name):
         .find_elements(by=By.XPATH, value="../div[contains(@class,'res-true')]/span[1]").copy()
 
 
-scrap_next_edition_theme()
+if __name__ == '__main__':
+    scrap_next_edition_theme()

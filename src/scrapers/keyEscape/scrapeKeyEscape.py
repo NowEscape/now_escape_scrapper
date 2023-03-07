@@ -93,4 +93,5 @@ def get_theme_element(driver, theme):
         .find_element(by=By.XPATH, value=f".//a/li[text()='{theme.theme_name}']//..")
 
 
-scrape_theme_date()
+if __name__ == '__main__':
+    scrape_theme_date()

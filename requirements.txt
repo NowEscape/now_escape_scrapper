@@ -25,3 +25,4 @@ wsproto==1.2.0 ; python_full_version >= '3.7.0'
 
 python-dotenv==1.0.0
 mysqlclient==2.1.1
+apscheduler==3.10.1
