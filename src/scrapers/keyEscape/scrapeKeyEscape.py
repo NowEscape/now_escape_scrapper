@@ -9,7 +9,7 @@ from src.utils.database import make_theme_date, update_theme_date
 from src.utils.util import try_except_handling
 
 
-def scrape_theme_date():
+def scrape_key_escape_theme():
     driver = get_chrome_driver()
 
     driver.get(KEY_ESCAPE_URL)
@@ -103,4 +103,4 @@ def get_theme_element(driver, theme):
 
 
 if __name__ == '__main__':
-    scrape_theme_date()
+    scrape_key_escape_theme()

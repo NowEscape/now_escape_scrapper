@@ -1,13 +1,11 @@
 import atexit
 import math
-import time
-import os
 from typing import Callable
 
 from apscheduler.executors.pool import ProcessPoolExecutor
 from apscheduler.schedulers.background import BlockingScheduler
 
-from src.scrapers.keyEscape.scrapeKeyEscape import scrape_theme_date
+from src.scrapers.keyEscape.scrapeKeyEscape import scrape_key_escape_theme
 from src.scrapers.nextEdition.scrapNextEdition import scrap_next_edition_theme
 from src.scrapers.sherlockHomes.scrapeSherlockHomes import scrap_sherlock_homes_theme
 
@@ -19,14 +17,14 @@ class ScarpingJob:
 
 
 SCARPING_JOB_LIST = [
-    ScarpingJob("key_escape", scrape_theme_date),
+    ScarpingJob("key_escape", scrape_key_escape_theme),
     ScarpingJob("sherlock_homes", scrap_sherlock_homes_theme),
     ScarpingJob("next_edition", scrap_next_edition_theme),
 ]
 
 
 def run():
-    scheduler = BlockingScheduler(executors={'default': ProcessPoolExecutor(max_workers=5)})
+    scheduler = BlockingScheduler(executors={'default': ProcessPoolExecutor(max_workers=5)}, timezone='Asia/Seoul')
     _ = [scheduler.add_job(job.func,
                            id=job.schedule_id,
                            trigger="cron",

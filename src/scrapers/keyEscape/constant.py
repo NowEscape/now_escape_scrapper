@@ -1,4 +1,4 @@
-from typing import Final, Dict
+from typing import Final
 
 KEY_ESCAPE_URL: Final = "https://keyescape.co.kr/web/home.php?go=rev.make"
 
