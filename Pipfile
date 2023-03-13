@@ -12,6 +12,7 @@ python-dotenv = "==1.0.0"
 mysqlclient = "==2.1.1"
 apscheduler = "==3.10.1"
 beautifulsoup4 = "*"
+lxml = "==4.9.2"
 
 [dev-packages]
 
