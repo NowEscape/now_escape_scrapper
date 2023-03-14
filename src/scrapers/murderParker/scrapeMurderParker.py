@@ -19,7 +19,6 @@ def scrape_murder_parker_theme():
         for cafe in MURDER_PARKER_CAFE_LIST:
             for theme in cafe.theme_list:
                 time_list = scrape_murder_parker_theme_bs4(date_str, cafe.url, theme.JIJEM, theme.theme_num)
-                print(time_list)
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {theme.theme_name}')
 
@@ -37,7 +36,7 @@ def scrape_murder_parker_theme_bs4(date: str, raw_url: str, jijem: str, theme_nu
     html = urllib.request.urlopen(url).read()
     bs_object = BeautifulSoup(html, "lxml")
     return [element.get_text().strip() for element in bs_object.select
-              (f'#sub_content3 > div:nth-child({theme_num}) > div.time > ul > a > li > span.time')]
+                  (f'#sub_content3 > div:nth-child({theme_num}) > div.time > ul > li > span.time[style="color: #222"]')]
 
 
 if __name__ == '__main__':
