@@ -6,7 +6,7 @@ from apscheduler.executors.pool import ProcessPoolExecutor
 from apscheduler.schedulers.background import BlockingScheduler
 
 from src.scrapers.keyEscape.scrapeKeyEscape import scrape_key_escape_theme
-from src.scrapers.nextEdition.scrapNextEdition import scrap_next_edition_theme
+from src.scrapers.nextEdition.scrapeNextEdition import scrap_next_edition_theme
 from src.scrapers.sherlockHomes.scrapeSherlockHomes import scrap_sherlock_homes_theme
 
 
