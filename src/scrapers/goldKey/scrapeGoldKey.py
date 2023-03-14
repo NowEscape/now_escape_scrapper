@@ -1,6 +1,6 @@
 import urllib
 from datetime import datetime, timedelta
-from src.scrapers.GoldKey.constant import GOLD_KEY_CAFE_LIST
+from src.scrapers.goldKey.constant import GOLD_KEY_CAFE_LIST
 from src.utils.database import make_theme_date, update_theme_date
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
