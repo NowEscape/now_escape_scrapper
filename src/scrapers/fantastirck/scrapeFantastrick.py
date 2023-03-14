@@ -18,7 +18,6 @@ def scrape_fantastrick_theme():
 
         for theme in FANTASTRICK_THEME_LIST:
             time_list = scrape_fantastrick_theme_bs4(date_str, theme.calendar_id)
-            print(time_list)
 
             theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
             print(f'{datetime.now()} scraping {date_str} {theme.theme_name}')
@@ -36,8 +35,12 @@ def scrape_fantastrick_theme_bs4(date: str, calendar_id: int):
 
     html = urllib.request.urlopen(url).read().decode("utf-8")
     bs_object = BeautifulSoup(html, "lxml")
-    #find_previous_siblings
-    return [element.get_text().strip() for element in bs_object.body.find_all('span', {'class': 'button-text'}, text='예약가능')]
+
+    return [datetime.strptime(
+        element.find('span', {'class': 'button-timeslot'}).text
+        .replace("오후", "PM").replace("오전", "AM"),'%p %I:%M').strftime('%H:%M')
+            for element in bs_object.body.find_all('span', {'class': 'timeslot-people'})
+            if not element.find('button').has_attr('disabled')]
 
 
 if __name__ == '__main__':
