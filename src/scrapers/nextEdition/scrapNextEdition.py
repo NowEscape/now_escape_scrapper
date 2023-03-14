@@ -1,4 +1,3 @@
-import time
 from datetime import datetime, timedelta
 
 from selenium.webdriver.common.by import By
@@ -31,7 +30,7 @@ def scrap_next_edition_theme():
                 time_list = [element.text for element in theme_time_result]
 
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
-                print(f'{datetime.now()} scarping {date_str} {cafe.url} {theme.theme_name}')
+                print(f'{datetime.now()} scraping {date_str} {cafe.url} {theme.theme_name}')
 
     theme_id_list = [theme.theme_id for cafe in NEXT_EDITION_CAFE_LIST for theme in cafe.theme_list]
 
@@ -57,4 +56,5 @@ def get_theme_time_result(driver, theme_name):
         .find_elements(by=By.XPATH, value="../div[contains(@class,'res-true')]/span[1]").copy()
 
 
-scrap_next_edition_theme()
+if __name__ == '__main__':
+    scrap_next_edition_theme()
