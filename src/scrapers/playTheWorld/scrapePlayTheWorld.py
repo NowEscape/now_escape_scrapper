@@ -19,7 +19,6 @@ def scrape_play_the_world_theme():
 
             for theme in cafe.theme_list:
                 time_list = scrape_play_the_world_theme_json(date_str, theme.theme_id_scraping)
-                print(time_list)
 
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {theme.theme_name}')
