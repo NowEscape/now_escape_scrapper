@@ -38,7 +38,7 @@ def scrape_fantastrick_theme_bs4(date: str, calendar_id: int):
 
     return [datetime.strptime(
         element.find('span', {'class': 'button-timeslot'}).text
-        .replace("오후", "PM").replace("오전", "AM"),'%p %I:%M').strftime('%H:%M')
+        .replace("오후", "PM").replace("오전", "AM"), '%p %I:%M').strftime('%H:%M')
             for element in bs_object.body.find_all('span', {'class': 'timeslot-people'})
             if not element.find('button').has_attr('disabled')]
 
