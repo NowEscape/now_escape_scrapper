@@ -1,4 +1,3 @@
-import re
 from datetime import datetime, timedelta
 
 from selenium.webdriver.common.by import By
@@ -49,4 +48,5 @@ def get_theme_time_result(driver, date_str, theme_name):
                             f"div[contains(@class, 'booking_list  hide_badge')]/a/div/div/span[1][contains(text(), '{theme_name}')]").copy()
 
 
-scrap_dps_theme()
+if __name__ == '__main__':
+    scrap_dps_theme()
