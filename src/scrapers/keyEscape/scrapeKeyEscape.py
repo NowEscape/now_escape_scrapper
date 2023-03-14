@@ -36,7 +36,7 @@ def scrape_key_escape_theme_bs4(date: str, zizum_num: int, theme_num: int):
 
     html = urllib.request.urlopen(url).read().decode("utf-8")
     bs_object = BeautifulSoup(html, "lxml")
-    return [element.get_text().strip() for element in bs_object.body.find_all('li', {'class': 'impossible'})]
+    return [element.get_text().strip() for element in bs_object.body.find_all('li', {'class': 'possible'})]
 
 
 if __name__ == '__main__':
