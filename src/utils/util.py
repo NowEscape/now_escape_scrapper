@@ -7,3 +7,9 @@ def try_except_handling(func):
             print("error", e)
             return None
     return wrapper
+
+
+def merge_dicts(a, b):
+    c = a.copy()
+    c.update(b)
+    return c

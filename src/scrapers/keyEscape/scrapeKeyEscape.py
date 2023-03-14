@@ -19,7 +19,9 @@ def scrape_key_escape_theme():
         for cafe in KEY_ESCAPE_CAFE_LIST:
             for theme in cafe.theme_list:
                 time_list = scrape_key_escape_theme_bs4(date_str, cafe.zizum_num, theme.theme_num)
-
+                if time_list is None:
+                    print(f'{datetime.now()} scraping {date_str} {cafe.location} {theme.theme_name}')
+                    continue
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {cafe.location} {theme.theme_name}')
 
