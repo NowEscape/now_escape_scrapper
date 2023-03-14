@@ -1,3 +1,4 @@
+import re
 from datetime import datetime, timedelta
 
 from selenium.webdriver.common.by import By
@@ -6,6 +7,8 @@ from src.scrapers.danPyeonSeon.constant import DPS_THEME_LIST, DPS_URL
 from src.utils.chromeCustomDriver import get_chrome_driver
 from src.utils.database import update_theme_date, make_theme_date
 from src.utils.util import try_except_handling
+
+p = re.compile('[0-9]{2}:[0-9]{2}')
 
 
 def scrap_dps_theme():
@@ -25,7 +28,7 @@ def scrap_dps_theme():
 
         for theme in DPS_THEME_LIST:
             theme_time_result = get_theme_time_result(driver, date_str, theme.theme_name)
-            time_list = [element.text for element in theme_time_result]
+            time_list = [element for element in theme_time_result]
             theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
             print(f'{datetime.now()} scarping {date_str} {theme.theme_name}')
 
@@ -43,9 +46,12 @@ def click_date(driver, date):
 
 
 def get_theme_time_result(driver, date_str, theme_name):
-    return driver.find_elements \
+    raw_data_list = driver.find_elements \
         (by=By.XPATH, value=f"//td[contains(@data-date,'{date_str}')]/div/div[3]/"
-                            f"div[contains(@class, 'booking_list  hide_badge')]/a/div/div/span[1][contains(text(), '{theme_name}')]").copy()
+                            f"div[contains(@class, 'booking_list') and not(contains(@class, 'disable'))]/"
+                            f"a/div/div/span[1][contains(text(), '{theme_name}')]").copy()
+
+    return [p.search(raw_data.text).group() for raw_data in raw_data_list]
 
 
 if __name__ == '__main__':
