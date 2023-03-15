@@ -19,7 +19,6 @@ def scrape_secret_code_theme():
         for cafe in SECRET_CODE_CAFE_LIST:
             for theme in cafe.theme_list:
                 time_list = scrape_secret_code_theme_bs4(date_str, theme.url)
-                print(time_list)
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {theme.theme_name}')
 
@@ -35,6 +34,7 @@ def scrape_secret_code_theme_bs4(date: str, raw_url: str):
 
     html = urllib.request.urlopen(url).read()
     bs_object = BeautifulSoup(html, "lxml")
+    bs_object.select_one('#sub_content3 > div > ul > li > span.time').decompose()
     return [element.get_text().strip() for element in bs_object.select
                                                     ('#sub_content3 > div > ul > li > span.time[style="color: #FFF"]')]
 
