@@ -35,10 +35,9 @@ def scrape_dumb_n_dumber_theme_bs4(date: str, raw_url: str, theme_num: int):
 
     html = urllib.request.urlopen(url).read().decode("utf-8")
     bs_object = BeautifulSoup(html, "lxml")
-    return [element.get_text().strip() for element in bs_object.select
- (f'#container > div > div > div:nth-child({theme_num}) > div.time_Area > ul > li > a[href] > span.time')]
+    return [element.get_text().strip() for element in bs_object.select(
+        f'#container > div > div > div:nth-child({theme_num}) > div.time_Area > ul > li > a:not(.end) > span.time')]
 
-#div:contains('John')
-#a href="reservation_02.html?prdno=1&amp;rdate=2023-03-15&amp;rtime=12:30"
+
 if __name__ == '__main__':
     scrape_dumb_n_dumber_theme()
