@@ -28,5 +28,6 @@ ios : https://apps.apple.com/kr/app/%EC%A7%80%EA%B8%88-%EB%B0%A9%ED%83%88%EC%B6%
 
 
 ## 사용한 주요 라이브러리
-- selenium : 스크래핑하기 위해 사용한 라이브러리. BS4, scrapy 대신, 동적인 처리가 필요로 하여 selenium을 사용함.
+- bs4 : selenium으로 모두 처리하기에는 성능이 너무 안 좋고, scrapy 프레임워크를 도입하기에는 이미 어느 정도 스크래핑이 진행된 상황이라 새로운 프로젝트를 만들기에는 부담스러웠음. 그래서 라이브러리인 bs4 도입
+- selenium : 스크래핑하기 위해 사용한 라이브러리. bs4, scrapy 대신, 동적인 처리가 필요할 때 selenium을 사용함.
 - APschduler : 일정시간마다 작업을 수행하기 위해 사용한 라이브러리. crontab, celery 대신, 가볍지만 관리가 편리한 방법을 사용하기 위해 APschduler를 사용함. 
