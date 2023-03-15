@@ -1,6 +1,6 @@
 from typing import Final
 
-DUMB_N_DUMBER_URL: Final = "http://www.dumbndumber.kr/reservation.html?k_shopno={SHOP_NO}&rdate={DATE}"
+DUMB_N_DUMBER_URL: Final = "http://www.dumbndumber{SUB_DOMAIN}.kr/reservation.html?k_shopno={SHOP_NO}&rdate={DATE}"
 
 
 class DumbNdumberTheme:
@@ -12,15 +12,17 @@ class DumbNdumberTheme:
 
 
 class DumbNdumberCafe:
-    def __init__(self, location: str, shop_no: int, theme_list: list[DumbNdumberTheme]):
+    def __init__(self, location: str, sub_domain: str, shop_no: int, theme_list: list[DumbNdumberTheme]):
         self.location = location
         self.shop_no = shop_no
+        self.sub_domain = sub_domain
         self.theme_list = theme_list
 
 
 DUMB_N_DUMBER_CAFE_LIST: Final = [
     DumbNdumberCafe(
         location="대학로점",
+        sub_domain="",
         shop_no=1,
         theme_list=[
             DumbNdumberTheme(theme_name="작전명: 옵저버", theme_num=6, theme_id=476),
@@ -33,6 +35,7 @@ DUMB_N_DUMBER_CAFE_LIST: Final = [
     ),
     DumbNdumberCafe(
         location="홍대점",
+        sub_domain="",
         shop_no=2,
         theme_list=[
             DumbNdumberTheme(theme_name="오므라이스", theme_num=6, theme_id=325),
@@ -46,6 +49,7 @@ DUMB_N_DUMBER_CAFE_LIST: Final = [
     ),
     DumbNdumberCafe(
         location="서면점",
+        sub_domain="-sm",
         shop_no=3,
         theme_list=[
             DumbNdumberTheme(theme_name="소공녀", theme_num=6, theme_id=1418),

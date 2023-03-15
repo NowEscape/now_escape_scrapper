@@ -20,7 +20,8 @@ def scrape_dumb_n_dumber_theme():
         date_str = date.strftime('%Y-%m-%d')
 
         for cafe in DUMB_N_DUMBER_CAFE_LIST:
-            bs_object = get_bs_object(DUMB_N_DUMBER_URL.format(SHOP_NO=cafe.shop_no, DATE=date_str))
+            bs_object = get_bs_object(
+                DUMB_N_DUMBER_URL.format(SUB_DOMAIN=cafe.sub_domain, SHOP_NO=cafe.shop_no, DATE=date_str))
 
             for theme in cafe.theme_list:
                 time_list = scrape_dumb_n_dumber_theme_bs4(bs_object, theme.theme_num)
