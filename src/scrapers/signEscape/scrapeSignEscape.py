@@ -19,7 +19,6 @@ def scrape_sign_escape_theme():
         for cafe in SIGN_ESCAPE_CAFE_LIST:
             for theme in cafe.theme_list:
                 time_list = scrape_sign_escape_theme_bs4(date_str, cafe.r_jijem, theme.r_theme)
-                print(time_list)
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {cafe.name} {theme.theme_name}')
 
