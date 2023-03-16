@@ -45,7 +45,7 @@ def scrape_zero_world_theme():
 def click_date(driver, date) -> bool:
     date_element = get_date_element(driver, date)
     driver.execute_script("arguments[0].click();", date_element)
-    driver.implicitly_wait(0.5)
+    driver.implicitly_wait(0.3)
     return True
 
 
