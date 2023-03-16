@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import MySQLdb
+
 from config.credentials import DB_HOST, DB_USER, DB_PASSWORD, DB_CHARSET, DB_NAME
 from src.utils.dateUtil import get_date_time_str
 

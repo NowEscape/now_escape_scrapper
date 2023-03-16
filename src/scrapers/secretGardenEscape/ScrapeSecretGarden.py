@@ -1,5 +1,5 @@
-from datetime import datetime, timedelta
 import urllib.request
+from datetime import datetime, timedelta
 
 from bs4 import BeautifulSoup
 

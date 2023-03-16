@@ -1,10 +1,11 @@
 import urllib
 from datetime import datetime, timedelta
-from src.scrapers.murderParker.constant import MURDER_PARKER_CAFE_LIST
-from src.utils.database import make_theme_date, update_theme_date
-from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+from bs4 import BeautifulSoup
+
+from src.scrapers.murderParker.constant import MURDER_PARKER_CAFE_LIST
+from src.utils.database import make_theme_date, update_theme_date
 from src.utils.util import try_except_handling
 
 
@@ -36,7 +37,7 @@ def scrape_murder_parker_theme_bs4(date: str, raw_url: str, jijem: str, theme_nu
     html = urllib.request.urlopen(url).read()
     bs_object = BeautifulSoup(html, "lxml")
     return [element.get_text().strip() for element in bs_object.select
-                  (f'#sub_content3 > div:nth-child({theme_num}) > div.time > ul > li > span.time[style="color: #222"]')]
+    (f'#sub_content3 > div:nth-child({theme_num}) > div.time > ul > li > span.time[style="color: #222"]')]
 
 
 if __name__ == '__main__':

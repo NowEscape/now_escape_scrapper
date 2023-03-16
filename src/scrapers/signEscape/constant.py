@@ -1,4 +1,6 @@
 SIGN_ESCAPE_URL = "http://signescape.com/sub/sub03_1.html?chois_date={DATE}&R_JIJEM={R_JIJEM}&R_THEMA={R_THEMA}"
+
+
 class SignEscapeTheme:
 
     def __init__(self, r_theme: str, theme_name: str, theme_id: int):

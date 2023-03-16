@@ -1,4 +1,4 @@
-from typing import Final, Dict
+from typing import Final
 
 
 class NextEditionTheme:

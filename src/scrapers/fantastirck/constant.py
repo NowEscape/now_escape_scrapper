@@ -13,6 +13,6 @@ class FantastrickTheme:
 
 
 FANTASTRICK_THEME_LIST: Final = [
-        FantastrickTheme(theme_name="태초의 신부", calendar_id=17, action="booked_calendar_date", theme_id=143),
-        FantastrickTheme(theme_name="사자의 서", calendar_id=23, action="booked_calendar_date", theme_id=1794),
+    FantastrickTheme(theme_name="태초의 신부", calendar_id=17, action="booked_calendar_date", theme_id=143),
+    FantastrickTheme(theme_name="사자의 서", calendar_id=23, action="booked_calendar_date", theme_id=1794),
 ]

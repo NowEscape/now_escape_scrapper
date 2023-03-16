@@ -1,10 +1,11 @@
 import urllib
 from datetime import datetime, timedelta
-from src.scrapers.earthStar.constant import EARTH_STAR_CAFE_LIST
-from src.utils.database import make_theme_date, update_theme_date
-from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+from bs4 import BeautifulSoup
+
+from src.scrapers.earthStar.constant import EARTH_STAR_CAFE_LIST
+from src.utils.database import make_theme_date, update_theme_date
 from src.utils.util import try_except_handling
 
 
@@ -36,7 +37,7 @@ def scrape_earth_star_theme_bs4(date: str, raw_url: str, theme_num: int):
     html = urllib.request.urlopen(url).read()
     bs_object = BeautifulSoup(html, "lxml")
     return [element.get_text().strip() for element in bs_object.select
-        (f'#wrap > div > div.container > section:nth-child({theme_num}) > div > ul > li > div > button.active1 > span')]
+    (f'#wrap > div > div.container > section:nth-child({theme_num}) > div > ul > li > div > button.active1 > span')]
 
 
 if __name__ == '__main__':

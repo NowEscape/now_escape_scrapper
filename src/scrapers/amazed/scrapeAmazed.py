@@ -1,10 +1,11 @@
 import urllib
 from datetime import datetime, timedelta
-from src.scrapers.amazed.constant import AMAZED_CAFE_LIST, AMAZED_URL
-from src.utils.database import make_theme_date, update_theme_date
-from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+from bs4 import BeautifulSoup
+
+from src.scrapers.amazed.constant import AMAZED_CAFE_LIST, AMAZED_URL
+from src.utils.database import make_theme_date, update_theme_date
 from src.utils.util import try_except_handling
 
 
@@ -31,7 +32,7 @@ def scrape_amazed_theme():
 @try_except_handling
 def scrape_amazed_theme_bs4(date: str, url: str, calendar_id: int, now: str):
     details = urllib.parse.urlencode({'action': 'booked_appointment_list_date', 'date': date,
-                                                                    'calendar_id': calendar_id, 'force_default': now})
+                                      'calendar_id': calendar_id, 'force_default': now})
     details = details.encode('UTF-8')
     url = urllib.request.Request(url, details)
 

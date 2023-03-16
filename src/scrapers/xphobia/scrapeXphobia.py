@@ -1,6 +1,6 @@
+import json
 import urllib
 from datetime import datetime, timedelta
-import json
 from urllib.request import urlopen
 
 from src.scrapers.xphobia.constant import XPHOBIA_CAFE_LIST, GET_XPHOBIA_URL_GET_TIME_META, GET_XPHOBIA_URL_GET_TIME

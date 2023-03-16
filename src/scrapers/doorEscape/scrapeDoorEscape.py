@@ -27,9 +27,6 @@ def scrape_door_escape_theme():
     update_theme_date(theme_id_list, theme_date_list)
 
 
-
-
-
 def scrape_door_escape_theme_bs4(date: str, cafe_sub_domain: str, theme_name: str):
     details = urllib.parse.urlencode({'rdate': date})
     details = details.encode('UTF-8')
@@ -43,8 +40,6 @@ def scrape_door_escape_theme_bs4(date: str, cafe_sub_domain: str, theme_name: st
             if element.select_one('div.theme_Top > span.theme_name').get_text().strip() == theme_name
             for time_element in element.select('div.time_Area > ul.reserve_Time > li')
             if time_element.select_one('a.end') is None]
-
-
 
 
 if __name__ == '__main__':

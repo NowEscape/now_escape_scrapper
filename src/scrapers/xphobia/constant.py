@@ -95,7 +95,7 @@ XPHOBIA_CAFE_LIST = [
     XphobiaCafe(
         shop="Phobia 명동",
         theme_list=[
-            XphobiaTheme(quest="Time Slip", theme_id=528), # 실제로는 오늘밤 주인공은 나야 나 를 지칭!!!!!!!!
+            XphobiaTheme(quest="Time Slip", theme_id=528),  # 실제로는 오늘밤 주인공은 나야 나 를 지칭!!!!!!!!
             XphobiaTheme(quest="그 남자 그 여자", theme_id=529),
             XphobiaTheme(quest="도깨비", theme_id=527),
         ]

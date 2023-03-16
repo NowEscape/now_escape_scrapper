@@ -38,7 +38,8 @@ def get_bs_object(url, store_id, date):
 
 def scrape_master_key_bs4(bs_object, theme):
     return [get_time_str(time_element.get_text())
-            for time_element in bs_object.select(f'div.box2-inner:has(div.title:-soup-contains("{theme.name}")) p.true a')]
+            for time_element in
+            bs_object.select(f'div.box2-inner:has(div.title:-soup-contains("{theme.name}")) p.true a')]
 
 
 if __name__ == '__main__':

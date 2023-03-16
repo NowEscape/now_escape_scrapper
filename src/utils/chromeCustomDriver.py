@@ -15,4 +15,3 @@ def get_chrome_option():
 
 def get_chrome_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), chrome_options=get_chrome_option())
-

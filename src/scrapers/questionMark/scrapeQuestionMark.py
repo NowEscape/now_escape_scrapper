@@ -1,10 +1,11 @@
 import urllib
 from datetime import datetime, timedelta
-from src.scrapers.questionMark.constant import QUESTION_MARK_URL
-from src.utils.database import make_theme_date, update_theme_date
-from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+from bs4 import BeautifulSoup
+
+from src.scrapers.questionMark.constant import QUESTION_MARK_URL
+from src.utils.database import make_theme_date, update_theme_date
 from src.utils.util import try_except_handling
 
 
@@ -32,7 +33,7 @@ def scrape_queation_mark_theme_bs4(date: str, raw_url: str):
     html = urllib.request.urlopen(url).read().decode("utf-8")
     bs_object = BeautifulSoup(html, "lxml")
     return [element.get_text().strip() for element in bs_object.select
-                                        ('#contents > div > div > div > div.time_Area > ul > li > a[href] > span.time')]
+    ('#contents > div > div > div > div.time_Area > ul > li > a[href] > span.time')]
 
 
 if __name__ == '__main__':

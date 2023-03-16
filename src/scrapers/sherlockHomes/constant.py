@@ -1,4 +1,4 @@
-from typing import Final, Dict
+from typing import Final
 
 SHERLOCK_URL: Final = "https://sherlock-holmes.co.kr/reservation"
 

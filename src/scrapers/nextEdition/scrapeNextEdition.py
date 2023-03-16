@@ -52,7 +52,7 @@ def click_date(driver, date) -> bool:
 
 
 def get_theme_time_result(driver, theme_name):
-    return driver.find_element(by=By.XPATH, value=f"//h2[contains(text(),'{theme_name}')]")\
+    return driver.find_element(by=By.XPATH, value=f"//h2[contains(text(),'{theme_name}')]") \
         .find_elements(by=By.XPATH, value="../div[contains(@class,'res-true')]/span[1]").copy()
 
 

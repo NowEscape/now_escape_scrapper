@@ -1,13 +1,12 @@
 import urllib
 from datetime import datetime, timedelta
+from urllib.request import urlopen
 
 import bs4
+from bs4 import BeautifulSoup
 
 from src.scrapers.dumbNdumber.constant import DUMB_N_DUMBER_CAFE_LIST, DUMB_N_DUMBER_URL
 from src.utils.database import make_theme_date, update_theme_date
-from bs4 import BeautifulSoup
-from urllib.request import urlopen
-
 from src.utils.util import try_except_handling
 
 

@@ -134,7 +134,7 @@ SECRET_GARDEN_CAFE_LIST = [
             SecretGardenTheme(theme_name="달 : 기억의 조각", theme_id=486),
             SecretGardenTheme(theme_name="딜레마", theme_id=491),
             SecretGardenTheme(theme_name="도망자 여씨", theme_id=490),
-            SecretGardenTheme(theme_name="삼남매 이씨", theme_id=487), #TODO: 장녀, 차녀, 막내 db에서 구분 없애야 함!!!
+            SecretGardenTheme(theme_name="삼남매 이씨", theme_id=487),  # TODO: 장녀, 차녀, 막내 db에서 구분 없애야 함!!!
         ]
     ),
     SecretGardenCafe(

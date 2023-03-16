@@ -1,10 +1,11 @@
 import urllib
 from datetime import datetime, timedelta
-from src.scrapers.keyEscape.constant import KEY_ESCAPE_CAFE_LIST, KEY_ESCAPE_URL
-from src.utils.database import make_theme_date, update_theme_date
-from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+from bs4 import BeautifulSoup
+
+from src.scrapers.keyEscape.constant import KEY_ESCAPE_CAFE_LIST, KEY_ESCAPE_URL
+from src.utils.database import make_theme_date, update_theme_date
 from src.utils.util import try_except_handling
 
 
