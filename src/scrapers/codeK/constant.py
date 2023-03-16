@@ -1,4 +1,6 @@
-CODE_K_URL = "http://www.code-k.co.kr/sub/code_sub04_1.html?R_JIJEM={R_JIJEM}&CHOIS_DATE={DATE}&DIS_T=S"
+from typing import Final
+
+CODE_K_URL: Final = "http://www.code-k.co.kr/sub/code_sub04_1.html?R_JIJEM={R_JIJEM}&CHOIS_DATE={DATE}&DIS_T=S"
 
 
 class CodeKTheme:

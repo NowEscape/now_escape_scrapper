@@ -1,5 +1,7 @@
-GET_XPHOBIA_URL_GET_TIME_META = "https://www.xphobia.net/reservation/ck_date2_no1.php"
-GET_XPHOBIA_URL_GET_TIME = "https://www.xphobia.net/reservation/ck_date_no1.php"
+from typing import Final
+
+GET_XPHOBIA_URL_GET_TIME_META: Final = "https://www.xphobia.net/reservation/ck_date2_no1.php"
+GET_XPHOBIA_URL_GET_TIME: Final = "https://www.xphobia.net/reservation/ck_date_no1.php"
 
 
 class XphobiaTheme:

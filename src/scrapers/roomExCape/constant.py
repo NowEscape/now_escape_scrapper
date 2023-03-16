@@ -1,4 +1,6 @@
-ROOM_EX_CAPE_URL = "http://www.ex-cape.com/sub/questAjax.php"
+from typing import Final
+
+ROOM_EX_CAPE_URL: Final = "http://www.ex-cape.com/sub/questAjax.php"
 
 
 class RoomExCapeTheme:

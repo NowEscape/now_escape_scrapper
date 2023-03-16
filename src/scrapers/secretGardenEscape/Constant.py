@@ -1,5 +1,6 @@
-# 비밀의 화원 url 상수
-SECRET_GARDEN_URL = 'http://m.secretgardenescape.com/reservation.html?k_shopno={SHOP_NO}&rdate={DATE}'
+from typing import Final
+
+SECRET_GARDEN_URL: Final = 'http://m.secretgardenescape.com/reservation.html?k_shopno={SHOP_NO}&rdate={DATE}'
 
 
 class SecretGardenTheme:

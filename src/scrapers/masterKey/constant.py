@@ -1,4 +1,6 @@
-MASTER_KEY_URL = "http://www.master-key.co.kr/booking/booking_list_new"
+from typing import Final
+
+MASTER_KEY_URL: Final = "http://www.master-key.co.kr/booking/booking_list_new"
 
 
 class MasterKeyTheme:

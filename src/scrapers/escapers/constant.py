@@ -1,4 +1,6 @@
-ESCAPERS_URL = "https://escapersd.com/reservation/theme"
+from typing import Final
+
+ESCAPERS_URL: Final = "https://escapersd.com/reservation/theme"
 
 
 class EscapersTheme:
