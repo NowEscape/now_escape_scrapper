@@ -53,11 +53,7 @@ def update_theme_date(theme_id_list, theme_date_list):
     result = cursor.fetchall()
     exist_theme_date_list = [ThemeDate(theme_id, date_time) for theme_id, date_time in result]
 
-
     print("SELECT COMPLETE... ", datetime.now(), len(exist_theme_date_list))
-    #print if exist item in theme_date_list and exist_theme_date_list
-    for item in set(exist_theme_date_list) & set(theme_date_list):
-        print(item)
 
     theme_date_list_for_delete = set(exist_theme_date_list) - set(theme_date_list)
 
