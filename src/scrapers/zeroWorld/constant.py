@@ -21,7 +21,7 @@ ZERO_WORLD_CAFE_LIST: Final = [
             ZeroWorldTheme(theme_name="[강남] 링", theme_id=111),
             ZeroWorldTheme(theme_name="[강남] 나비효과", theme_id=110),
             ZeroWorldTheme(theme_name="[강남] 콜러", theme_id=109),
-            ZeroWorldTheme(theme_name="[강남] 어느 겨울밤2", theme_id=108),
+            ZeroWorldTheme(theme_name="[강남] 어느겨울밤2", theme_id=108),
             ZeroWorldTheme(theme_name="[강남] 아이엠", theme_id=107),
             ZeroWorldTheme(theme_name="[강남] 제로호텔L", theme_id=112),
             ZeroWorldTheme(theme_name="[강남] DONE", theme_id=113),

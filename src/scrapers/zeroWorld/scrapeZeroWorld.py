@@ -14,17 +14,16 @@ def scrape_zero_world_theme():
     theme_date_list = []
     now = datetime.now()
 
-    for dateDelta in range(7):
-        date = now + timedelta(dateDelta)
-        date_str = date.strftime('%Y-%m-%d')
+    for cafe in ZERO_WORLD_CAFE_LIST:
+        driver.get(cafe.url)
 
-        if click_date(driver, date) is None:
-            continue
+        driver.implicitly_wait(1)
+        for dateDelta in range(7):
+            date = now + timedelta(dateDelta)
+            date_str = date.strftime('%Y-%m-%d')
 
-        for cafe in ZERO_WORLD_CAFE_LIST:
-            driver.get(cafe.url)
-
-            driver.implicitly_wait(1)
+            if click_date(driver, date) is None:
+                continue
 
             for theme in cafe.theme_list:
                 if click_theme(driver, theme) is None:
@@ -46,7 +45,7 @@ def scrape_zero_world_theme():
 def click_date(driver, date) -> bool:
     date_element = get_date_element(driver, date)
     driver.execute_script("arguments[0].click();", date_element)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(1)
     return True
 
 
@@ -54,29 +53,25 @@ def click_date(driver, date) -> bool:
 def click_theme(driver, theme) -> bool:
     theme_element = get_theme_element(driver, theme)
     driver.execute_script("arguments[0].click();", theme_element)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(1)
     return True
 
 
 def get_theme_time_result(driver):
-    return driver.find_element(by=By.ID, value="themeTimeWrap").find_elements(by=By.XPATH, value="//label/span").copy()
-#//*[@id="themeTimeWrap"]/label/span
+    return driver \
+        .find_element(by=By.ID, value="themeTimeWrap") \
+        .find_elements(by=By.XPATH, value="./label[not(contains(@class, 'active'))]/span").copy()
+
 
 def get_date_element(driver, date):
-    # calender_date = driver.find_element(by=By.ID, value="calendar").find_element(by=By.CLASS_NAME, value="yymm").text
-    # if date.strftime('%Y. %-m') != calender_date:
-    #     driver.find_element(by=By.ID, value="calendar").find_element(by=By.CLASS_NAME, value="next").click()
-    #     driver.implicitly_wait(5)
-
     return driver.find_element(by=By.ID, value="calendar") \
         .find_element(by=By.XPATH, value=f".//div/div/div/div/div[2]/div[text()='{date.day}']")
-    #f".//table/tbody/tr/td/a[text()='{date.day}']//..")
 
-#//*[@id="calendar"]/div/div/div/div/div[2]/div[20]
+
 def get_theme_element(driver, theme):
     return driver.find_element(by=By.ID, value="themeChoice") \
         .find_element(by=By.XPATH, value=f"//label/span[text()='{theme.theme_name}']//..")
-#//*[@id="themeChoice"]/label/span
+
 
 if __name__ == '__main__':
     scrape_zero_world_theme()
