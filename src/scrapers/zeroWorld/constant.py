@@ -34,7 +34,7 @@ ZERO_WORLD_CAFE_LIST: Final = [
         theme_list=[
             ZeroWorldTheme(theme_name="[김포] 제로호텔", theme_id=958),
             ZeroWorldTheme(theme_name="[김포] 탈옥:특별수용소", theme_id=957),
-            ZeroWorldTheme(theme_name="[김포] 어느 겨울밤", theme_id=956),
+            ZeroWorldTheme(theme_name="[김포] 어느겨울밤", theme_id=956),
             ZeroWorldTheme(theme_name="[김포] 인형괴담", theme_id=952),
             ZeroWorldTheme(theme_name="[김포] 성역전설", theme_id=953),
             ZeroWorldTheme(theme_name="[김포] 피아노", theme_id=955),
