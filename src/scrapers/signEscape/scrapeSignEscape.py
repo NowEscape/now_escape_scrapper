@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 from src.scrapers.signEscape.constant import SIGN_ESCAPE_CAFE_LIST, SIGN_ESCAPE_URL
 from src.utils.database import make_theme_date, update_theme_date
-from src.utils.dateUtil import time_pattern
+from src.utils.dateUtil import get_time_str
 
 
 def scrape_sign_escape_theme():
@@ -32,7 +32,7 @@ def scrape_sign_escape_theme_bs4(date: str, r_jijem: str, r_theme: int):
 
     html = urllib.request.urlopen(url).read()
     bs_object = BeautifulSoup(html, "lxml")
-    return [time_pattern.search(element.get_text().strip()).group()
+    return [get_time_str(element.get_text())
             for element in bs_object.select(f'#reser4 li.timeOn')]
 
 

@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 from src.scrapers.codeK.constant import CODE_K_CAFE_LIST, CODE_K_URL
 from src.utils.database import update_theme_date, make_theme_date
-from src.utils.dateUtil import time_pattern
+from src.utils.dateUtil import get_time_str
 
 
 def scrape_code_k():
@@ -37,7 +37,7 @@ def get_bs_object(url: str):
 
 
 def scrape_code_k_theme_bs4(bs_object: bs4.BeautifulSoup, theme_name: str):
-    return [time_pattern.search(element.get_text()).group() for element in bs_object.select(
+    return [get_time_str(element.get_text()) for element in bs_object.select(
         f'#reser3 ul a:has(li:-soup-contains("{theme_name}")) +li div ul > a > li.timeOn')]
 
 

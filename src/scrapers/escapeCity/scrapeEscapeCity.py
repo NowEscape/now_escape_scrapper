@@ -7,7 +7,7 @@ from src.scrapers.escapeCity.constant import ESCAPE_CITY_CAFE_LIST, ESCAPE_CITY_
 from src.utils.database import make_theme_date, update_theme_date
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-from src.utils.dateUtil import time_pattern
+from src.utils.dateUtil import get_time_str
 
 from src.utils.util import try_except_handling
 
@@ -46,7 +46,7 @@ def scrape_escape_city_theme_bs4(bs_object: bs4.BeautifulSoup, theme_num: int):
     raw_data_list = [element.get_text().strip() for element in bs_object.select(
                                 f'#reser3 > ul > li:nth-child({theme_num}) > div > ul > a > li')]
 
-    return [time_pattern.search(raw_data).group() for raw_data in raw_data_list]
+    return [get_time_str(raw_data) for raw_data in raw_data_list]
 
 
 if __name__ == '__main__':

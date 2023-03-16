@@ -5,7 +5,7 @@ from urllib.request import urlopen
 
 from src.scrapers.xphobia.constant import XPHOBIA_CAFE_LIST, GET_XPHOBIA_URL_GET_TIME_META, GET_XPHOBIA_URL_GET_TIME
 from src.utils.database import update_theme_date, make_theme_date
-from src.utils.dateUtil import time_pattern
+from src.utils.dateUtil import get_time_str
 from src.utils.util import merge_dicts
 
 
@@ -40,7 +40,7 @@ def scrape_xphobia_theme_json(shop: str, quest: str, date: str):
     for index in range(1, 51):
         if json_data[f'ro_day{index}'] == "":
             break
-        available_time_list.append(time_pattern.search(json_data[f'ro_day{index}']).group())
+        available_time_list.append(get_time_str(json_data[f'ro_day{index}']))
 
     params = \
         urllib.parse.urlencode(

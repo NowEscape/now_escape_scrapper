@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from src.scrapers.danPyeonSeon.constant import DPS_THEME_LIST, DPS_URL
 from src.utils.chromeCustomDriver import get_chrome_driver
 from src.utils.database import update_theme_date, make_theme_date
-from src.utils.dateUtil import time_pattern
+from src.utils.dateUtil import get_time_str
 from src.utils.util import try_except_handling
 
 
@@ -49,7 +49,7 @@ def get_theme_time_result(driver, date_str, theme_name):
                             f"div[contains(@class, 'booking_list') and not(contains(@class, 'disable'))]/"
                             f"a/div/div/span[1][contains(text(), '{theme_name}')]").copy()
 
-    return [time_pattern.search(raw_data.text).group() for raw_data in raw_data_list]
+    return [get_time_str(raw_data.text) for raw_data in raw_data_list]
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ import requests
 import json
 from src.scrapers.playTheWorld.constant import PLAY_THE_WORLD_THEME_LIST, PLAY_THE_WORLD_URL
 from src.utils.database import update_theme_date, make_theme_date
-from src.utils.dateUtil import time_pattern
+from src.utils.dateUtil import get_time_str
 
 
 def scrape_play_the_world_theme():
@@ -33,7 +33,7 @@ def scrape_play_the_world_theme_json(date: str, theme_id_scraping: int):
     response = requests.get(url)
     json_data = json.loads(response.text)
 
-    return [time_pattern.search(time_unit['start_time']).group()
+    return [get_time_str(time_unit['start_time'])
             for time_unit in json_data['data']['time_units'] if
             time_unit['reserve_status'] == 'default']
 
