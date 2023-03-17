@@ -74,7 +74,7 @@ def run():
 
 
 def to_minute(index):
-    return math.ceil(index / len(SCARPING_JOB_LIST) * 20)
+    return math.ceil(index / len(SCARPING_JOB_LIST) * 20) % 20
 
 
 if __name__ == '__main__':
