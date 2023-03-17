@@ -280,7 +280,6 @@ MASTER_KEY_CAFE_LIST = [
         theme_list=[
             MasterKeyTheme(name="인투더와일드", theme_id=295),
             MasterKeyTheme(name="그도... 그럴 것이다", theme_id=296),
-            #MasterKeyTheme(name="그리고 아무도 없었다", theme_id=1142),
             MasterKeyTheme(name="SCENE : 404 NOT FOUND", theme_id=297),
         ]
     ),
