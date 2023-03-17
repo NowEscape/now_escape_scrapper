@@ -43,7 +43,6 @@ SCARPING_JOB_LIST = [
     ScarpingJob(func=scrape_escape_city_theme, schedule_id="escape_city"),
     ScarpingJob(func=scrape_fantastrick_theme, schedule_id="fantastrick"),
     ScarpingJob(func=scrape_gold_key_theme, schedule_id="gold_key"),
-    ScarpingJob(func=scrape_key_escape_theme, schedule_id="key_escape"),
     ScarpingJob(func=scrape_master_key, schedule_id="master_key"),
     ScarpingJob(func=scrape_murder_parker_theme, schedule_id="murder_parker"),
     ScarpingJob(func=scrap_next_edition_theme, schedule_id="next_edition"),
