@@ -24,6 +24,7 @@ from src.scrapers.roomExCape.scrapeRoomExCape import scrape_room_ex_cape
 from src.scrapers.secretCode.scrapeSecretCode import scrape_secret_code_theme
 from src.scrapers.secretGardenEscape.ScrapeSecretGarden import scrape_secret_garden_theme
 from src.scrapers.sherlockHomes.scrapeSherlockHomes import scrap_sherlock_homes_theme
+from src.scrapers.signEscape.scrapeSignEscape import scrape_sign_escape_theme
 from src.scrapers.solver.scrapeSolver import scrape_solver_theme
 from src.scrapers.xphobia.scrapeXphobia import scrape_xphobia_theme
 
@@ -43,6 +44,7 @@ SCARPING_JOB_LIST = [
     ScarpingJob(func=scrape_escape_city_theme, schedule_id="escape_city"),
     ScarpingJob(func=scrape_fantastrick_theme, schedule_id="fantastrick"),
     ScarpingJob(func=scrape_gold_key_theme, schedule_id="gold_key"),
+    ScarpingJob(func=scrape_key_escape_theme, schedule_id="key_escape"),
     ScarpingJob(func=scrape_master_key, schedule_id="master_key"),
     ScarpingJob(func=scrape_murder_parker_theme, schedule_id="murder_parker"),
     ScarpingJob(func=scrap_next_edition_theme, schedule_id="next_edition"),
@@ -53,7 +55,7 @@ SCARPING_JOB_LIST = [
     ScarpingJob(func=scrape_secret_code_theme, schedule_id="secret_code"),
     ScarpingJob(func=scrape_secret_garden_theme, schedule_id="secret_garden"),
     ScarpingJob(func=scrap_sherlock_homes_theme, schedule_id="sherlock_homes"),
-    ScarpingJob(func=scrape_key_escape_theme, schedule_id="sign_escape"),
+    ScarpingJob(func=scrape_sign_escape_theme, schedule_id="sign_escape"),
     ScarpingJob(func=scrape_solver_theme, schedule_id="solver"),
     ScarpingJob(func=scrape_xphobia_theme, schedule_id="xphobia")
 ]
