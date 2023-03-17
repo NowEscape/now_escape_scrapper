@@ -29,6 +29,7 @@ def scrape_key_escape_theme():
     theme_id_list = [theme.theme_id for cafe in KEY_ESCAPE_CAFE_LIST for theme in cafe.theme_list]
 
     update_theme_date(theme_id_list, theme_date_list)
+    return
 
 
 @try_except_handling
