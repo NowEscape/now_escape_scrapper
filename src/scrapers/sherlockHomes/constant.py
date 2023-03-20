@@ -1,6 +1,6 @@
 from typing import Final
 
-SHERLOCK_HOMES_URL: Final = "http://sherlock-holmes.co.kr/reservation/res_schedule.php?sido=1&bno=48&date=2023-03-20&tno="
+SHERLOCK_HOMES_URL: Final = "http://sherlock-holmes.co.kr/reservation/res_schedule.php?sido={SIDO}&bno={BNO}&date={DATE}&tno="
 
 
 class SherlockHomesTheme:
