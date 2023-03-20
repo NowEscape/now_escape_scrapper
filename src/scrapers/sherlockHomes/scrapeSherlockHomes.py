@@ -33,7 +33,9 @@ def scrape_sherlock_homes_theme():
 
 
 def get_bs_object(url):
-    html = urllib.request.urlopen(urllib.request.Request(url)).read().decode("utf-8")
+    user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
+    headers = {'User-Agent': user_agent}
+    html = urllib.request.urlopen(urllib.request.Request(url, None, headers)).read().decode("utf-8")
     bs_object = BeautifulSoup(html, "lxml")
     return bs_object
 
@@ -44,9 +46,9 @@ def scrape_sherlock_homes_theme_bs4(bs_object: bs4.BeautifulSoup, theme_num: int
     ('div.inner container > li:nth-child(1) > div.row > div > a > p.time')]
 
 
-#theme_ac_186 > div.row > div > div > p.time
-#theme_ac_186 > div.row > div > a > p.time
-#theme_ac_283 > div.row > div:nth-child(3) > a > p.time
+# theme_ac_186 > div.row > div > div > p.time
+# theme_ac_186 > div.row > div > a > p.time
+# theme_ac_283 > div.row > div:nth-child(3) > a > p.time
 
 if __name__ == '__main__':
     scrape_sherlock_homes_theme()
