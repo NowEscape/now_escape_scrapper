@@ -362,7 +362,7 @@ SHERLOCK_HOMES_CAFE_LIST: Final = [
             SherlockHomesTheme(theme_name="지프리트의 심장", theme_num=279, theme_id=1286),
             SherlockHomesTheme(theme_name="황금 감옥 : 와캄", theme_num=289, theme_id=1287),
             SherlockHomesTheme(theme_name="랑슈 뷰티연구소", theme_num=241, theme_id=1288),
-            SherlockHomesTheme(theme_name="단잠", theme_num=34, theme_id=244),
+            SherlockHomesTheme(theme_name="단잠", theme_num=244, theme_id=1289),
         ],
     ),
 ]
