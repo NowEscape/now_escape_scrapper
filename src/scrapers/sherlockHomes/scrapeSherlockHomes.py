@@ -43,8 +43,8 @@ def get_bs_object(url):
 @try_except_handling
 def scrape_sherlock_homes_theme_bs4(bs_object: bs4.BeautifulSoup, theme_num: int):
     return [element.get_text().strip() for element in bs_object.select
-    (f'#theme_ac_{theme_num} > div.row > div > a > p.time')]
+                                                                (f'#theme_ac_{theme_num} > div.row > div > a > p.time')]
 
-#theme_ac_295 > div.row > div:nth-child(8) > a > p.time
+
 if __name__ == '__main__':
     scrape_sherlock_homes_theme()
