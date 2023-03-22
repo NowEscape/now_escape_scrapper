@@ -11,6 +11,7 @@ from src.scrapers.doorEscape.scrapeDoorEscape import scrape_door_escape_theme
 from src.scrapers.dumbNdumber.scrapeDumbNdumber import scrape_dumb_n_dumber_theme
 from src.scrapers.earthStar.scrapeEarthStar import scrape_earth_star_theme
 from src.scrapers.escapeCity.scrapeEscapeCity import scrape_escape_city_theme
+from src.scrapers.escapers.scapeEscapers import scrape_escapers_theme
 from src.scrapers.fantastirck.scrapeFantastrick import scrape_fantastrick_theme
 from src.scrapers.goldKey.scrapeGoldKey import scrape_gold_key_theme
 from src.scrapers.keyEscape.scrapeKeyEscape import scrape_key_escape_theme
@@ -27,6 +28,7 @@ from src.scrapers.sherlockHomes.scrapeSherlockHomes import scrape_sherlock_homes
 from src.scrapers.signEscape.scrapeSignEscape import scrape_sign_escape_theme
 from src.scrapers.solver.scrapeSolver import scrape_solver_theme
 from src.scrapers.xphobia.scrapeXphobia import scrape_xphobia_theme
+from src.scrapers.zeroWorld.scrapeZeroWorld import scrape_zero_world_theme
 
 
 class ScarpingJob:
@@ -37,17 +39,16 @@ class ScarpingJob:
 
 SCARPING_JOB_LIST = [
     ScarpingJob(func=scrape_amazed_theme, schedule_id="amazed"),
-    # ScarpingJob(func=scrap_dps_theme, schedule_id="dps"),
+    ScarpingJob(func=scrap_dps_theme, schedule_id="dps"),
     ScarpingJob(func=scrape_door_escape_theme, schedule_id="door_escape"),
     ScarpingJob(func=scrape_dumb_n_dumber_theme, schedule_id="dumb_n_dumber"),
     ScarpingJob(func=scrape_earth_star_theme, schedule_id="earth_star"),
     ScarpingJob(func=scrape_escape_city_theme, schedule_id="escape_city"),
     ScarpingJob(func=scrape_fantastrick_theme, schedule_id="fantastrick"),
     ScarpingJob(func=scrape_gold_key_theme, schedule_id="gold_key"),
-    # ScarpingJob(func=scrape_key_escape_theme, schedule_id="key_escape"),
+    ScarpingJob(func=scrape_key_escape_theme, schedule_id="key_escape"),
     ScarpingJob(func=scrape_master_key, schedule_id="master_key"),
     ScarpingJob(func=scrape_murder_parker_theme, schedule_id="murder_parker"),
-    # ScarpingJob(func=scrap_next_edition_theme, schedule_id="next_edition"),
     ScarpingJob(func=scrape_play_the_world_theme, schedule_id="play_the_world"),
     ScarpingJob(func=scrape_point_nine_theme, schedule_id="point_nine"),
     ScarpingJob(func=scrape_queation_mark_theme, schedule_id="queation_mark"),
@@ -59,23 +60,43 @@ SCARPING_JOB_LIST = [
     ScarpingJob(func=scrape_solver_theme, schedule_id="solver"),
     ScarpingJob(func=scrape_xphobia_theme, schedule_id="xphobia")
 ]
+SCARPING_SELENIUM_JOB_LIST = [
+    ScarpingJob(func=scrape_escapers_theme, schedule_id="escapers"),
+    ScarpingJob(func=scrap_next_edition_theme, schedule_id="next_edition"),
+    ScarpingJob(func=scrape_zero_world_theme, schedule_id="zero_world"),
+
+]
 
 
 def run():
-    scheduler = BlockingScheduler(executors={'default': ProcessPoolExecutor(max_workers=5)}, timezone='Asia/Seoul')
+    scheduler = BlockingScheduler(executors={'default': ProcessPoolExecutor(max_workers=3)}, timezone='Asia/Seoul')
+
     _ = [scheduler.add_job(job.func,
                            id=job.schedule_id,
                            trigger="cron",
-                           minute=f'{0 + to_minute(index)},{20 + to_minute(index)},{40 + to_minute(index)}')
+                           minute=get_cron_minute(index, len(SCARPING_JOB_LIST))
+                           )
          for index, job in enumerate(SCARPING_JOB_LIST)
+         ]
+    _ = [scheduler.add_job(job.func,
+                           id=job.schedule_id,
+                           trigger="cron",
+                           minute=get_cron_minute(index, len(SCARPING_SELENIUM_JOB_LIST))
+                           )
+         for index, job in enumerate(SCARPING_SELENIUM_JOB_LIST)
          ]
 
     atexit.register(lambda: scheduler.running and scheduler.shutdown())
     scheduler.start()
 
 
-def to_minute(index):
-    return math.ceil(index / len(SCARPING_JOB_LIST) * 20) % 20
+def get_cron_minute(index: int, size: int):
+    term = to_minute(index, size)
+    return f'{0 + term},{20 + term},{40 + term}'
+
+
+def to_minute(index: int, size: int):
+    return math.ceil(index / size * 20) % 20
 
 
 if __name__ == '__main__':
