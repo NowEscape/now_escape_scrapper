@@ -18,8 +18,10 @@ def scrape_gold_key_theme():
         date_str = date.strftime('%Y-%m-%d')
 
         for cafe in GOLD_KEY_CAFE_LIST:
+            bs_object = get_bs_object(cafe.url, date_str)
+
             for theme in cafe.theme_list:
-                time_list = scrape_gold_key_theme_bs4(date_str, cafe.url, theme.theme_num)
+                time_list = scrape_gold_key_theme_bs4(bs_object, theme.theme_num)
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {cafe.location} {theme.theme_name}')
 
@@ -28,13 +30,16 @@ def scrape_gold_key_theme():
     update_theme_date(theme_id_list, theme_date_list)
 
 
-@try_except_handling
-def scrape_gold_key_theme_bs4(date: str, raw_url: str, theme_num: int):
+def get_bs_object(raw_url, date):
     url_final = raw_url + date
     url = urllib.request.Request(url_final)
 
-    html = urllib.request.urlopen(url).read().decode("utf-8")
-    bs_object = BeautifulSoup(html, "lxml")
+    html = urllib.request.urlopen(url).read()
+    return BeautifulSoup(html, "lxml")
+
+
+@try_except_handling
+def scrape_gold_key_theme_bs4(bs_object, theme_num):
     return [element.get_text().strip() for element in bs_object.select
     (f'#contents > div > div > div:nth-child({theme_num}) > div.time_Area > ul > li > a[href] > span.time')]
 
