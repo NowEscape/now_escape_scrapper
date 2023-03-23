@@ -18,7 +18,6 @@ def scrape_door_escape_theme():
         for cafe in DOOR_ESCAPE_CAFE_LIST:
             for theme in cafe.theme_list:
                 time_list = scrape_door_escape_theme_bs4(date_str, cafe.cafe_sub_domain, theme.theme_name)
-                print(time_list)
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {cafe.name} {theme.theme_name}')
 
@@ -30,7 +29,6 @@ def scrape_door_escape_theme():
 def scrape_door_escape_theme_bs4(date: str, cafe_sub_domain: str, theme_name: str):
     details = urllib.parse.urlencode({'rdate': date})
     details = details.encode('UTF-8')
-    print(DOOR_ESCAPE_URL.format(CAFE_SUB_DOMAIN=cafe_sub_domain))
     url = urllib.request.Request(DOOR_ESCAPE_URL.format(CAFE_SUB_DOMAIN=cafe_sub_domain), details)
 
     html = urllib.request.urlopen(url).read().decode("utf-8")

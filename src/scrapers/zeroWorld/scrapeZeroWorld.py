@@ -31,7 +31,6 @@ def scrape_zero_world_theme():
 
                 theme_time_result = get_theme_time_result(driver)
                 time_list = [element.text for element in theme_time_result]
-                print(time_list)
 
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {theme.theme_name}')

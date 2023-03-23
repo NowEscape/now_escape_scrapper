@@ -21,7 +21,6 @@ def scrape_xphobia_theme():
 
             for theme in cafe.theme_list:
                 time_list = scrape_xphobia_theme_json(cafe.shop, theme.quest, date.strftime('%Y%m%d'))
-                print(time_list)
 
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {theme.quest}')
