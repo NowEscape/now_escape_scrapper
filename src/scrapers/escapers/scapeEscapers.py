@@ -25,12 +25,11 @@ def scrape_escapers_theme():
                 continue
 
             for theme in cafe.theme_list:
-                if click_theme(driver, theme.theme_pk) is None:
+                if click_theme(driver, theme.theme_name) is None:
                     continue
                 theme_time_result = get_theme_time_result(driver)
                 time_list = [element.get_attribute('value') for element in theme_time_result]
                 print(time_list)
-
 
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {theme.theme_name}')
@@ -44,8 +43,7 @@ def scrape_escapers_theme():
 def click_date(driver, date):
     element = driver \
         .find_element(by=By.CSS_SELECTOR,
-                      value=f"div[class*='datepicker--cell'][data-date='{date.day}']")
-    print(element)
+                      value=f"div[class*='datepicker--cell'][data-month='{date.month - 1}'][data-date='{date.day}']")
     driver.execute_script("arguments[0].click();", element)
 
     driver.implicitly_wait(0.5)
@@ -53,18 +51,20 @@ def click_date(driver, date):
 
 
 @try_except_handling
-def click_theme(driver, theme_pk):
+def click_theme(driver, theme_name):
     element = driver \
-        .find_element(by=By.CSS_SELECTOR,
-                      value=f"#themeChoice > label > input[value='{theme_pk}']")
+        .find_element(by=By.XPATH,
+                      value=f"//*[@id='themeChoice']/label/span[contains(text(), '{theme_name}')]")
     driver.execute_script("arguments[0].click();", element)
 
     driver.implicitly_wait(0.5)
     return True
 
+
 def get_theme_time_result(driver):
     return driver \
         .find_elements(by=By.CSS_SELECTOR, value="#themeTimeWrap > label:not(.active) > input").copy()
+
 
 if __name__ == "__main__":
     scrape_escapers_theme()
