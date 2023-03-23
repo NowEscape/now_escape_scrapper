@@ -78,13 +78,13 @@ def run():
                            )
          for index, job in enumerate(SCARPING_JOB_LIST)
          ]
-    _ = [scheduler.add_job(job.func,
-                           id=job.schedule_id,
-                           trigger="cron",
-                           minute=get_cron_minute(index, len(SCARPING_SELENIUM_JOB_LIST))
-                           )
-         for index, job in enumerate(SCARPING_SELENIUM_JOB_LIST)
-         ]
+    # _ = [scheduler.add_job(job.func,
+    #                        id=job.schedule_id,
+    #                        trigger="cron",
+    #                        minute=get_cron_minute(index, len(SCARPING_SELENIUM_JOB_LIST))
+    #                        )
+    #      for index, job in enumerate(SCARPING_SELENIUM_JOB_LIST)
+    #      ]
 
     atexit.register(lambda: scheduler.running and scheduler.shutdown())
     scheduler.start()
