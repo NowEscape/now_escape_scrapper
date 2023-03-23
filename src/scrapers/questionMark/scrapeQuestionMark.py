@@ -18,7 +18,6 @@ def scrape_queation_mark_theme():
         date_str = date.strftime('%Y-%m-%d')
 
         time_list = scrape_queation_mark_theme_bs4(date_str, QUESTION_MARK_URL)
-        print(time_list)
         theme_date_list = theme_date_list + (make_theme_date(448, date_str, time_list))
         print(f'{datetime.now()} scraping {date_str} 퀘스천마크')
 

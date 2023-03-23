@@ -23,7 +23,6 @@ def scrape_sherlock_homes_theme():
 
             for theme in cafe.theme_list:
                 time_list = scrape_sherlock_homes_theme_bs4(bs_object, theme.theme_num)
-                print(time_list)
                 theme_date_list = theme_date_list + (make_theme_date(theme.theme_id, date_str, time_list))
                 print(f'{datetime.now()} scraping {date_str} {cafe.region2} {theme.theme_name}')
 
